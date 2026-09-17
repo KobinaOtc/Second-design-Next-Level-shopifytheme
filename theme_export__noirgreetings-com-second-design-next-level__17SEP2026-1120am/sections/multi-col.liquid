@@ -1,0 +1,733 @@
+{{ 'section-multicolumn-slider.css' | asset_url | stylesheet_tag }}
+
+<div class="multicolumn-slider" data-section-id="{{ section.id }}" data-image-style="{{ section.settings.image_style }}" style="--section-width: {{ section.settings.section_width }}%; --card-gap: {{ section.settings.card_gap }}px;">
+  <div class="multicolumn-slider__inner">
+    {% if section.settings.title != blank %}
+      <div class="multicolumn-slider__header">
+        <h2 class="multicolumn-slider__title">{{ section.settings.title | escape }}</h2>
+        {% if section.settings.subtitle != blank %}
+          <p class="multicolumn-slider__subtitle">{{ section.settings.subtitle | escape }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="multicolumn-slider__track-wrapper">
+      <div class="multicolumn-slider__track" id="sliderTrack-{{ section.id }}">
+        <div class="multicolumn-slider__slides">
+          {% for block in section.blocks %}
+            <div class="multicolumn-slider__slide" data-block-id="{{ block.id }}">
+              <div class="multicolumn-card">
+                <div class="multicolumn-card__image-wrapper">
+                  {% if block.settings.image != blank %}
+                    {{
+                      block.settings.image
+                      | image_url: width: 1000
+                      | image_tag:
+                        loading: 'lazy',
+                        class: 'multicolumn-card__image'
+                    }}
+                  {% else %}
+                    {{ 'image' | placeholder_svg_tag: 'multicolumn-card__image placeholder-svg' }}
+                  {% endif %}
+                </div>
+                <div class="multicolumn-card__content">
+                  {% if block.settings.heading != blank %}
+                    <h3 class="multicolumn-card__heading">{{ block.settings.heading | escape }}</h3>
+                  {% endif %}
+                  {% if block.settings.text != blank %}
+                    <div class="multicolumn-card__text">{{ block.settings.text }}</div>
+                  {% endif %}
+                  {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+                    <a href="{{ block.settings.button_link }}" class="multicolumn-card__button">
+                      {{ block.settings.button_label | escape }}
+                    </a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      {% if section.settings.show_arrows %}
+        <button class="multicolumn-slider__arrow multicolumn-slider__arrow--prev" aria-label="Previous">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="multicolumn-slider__arrow multicolumn-slider__arrow--next" aria-label="Next">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      {% endif %}
+    </div>
+
+    {% if section.settings.show_dots %}
+      <div class="multicolumn-slider__dots"></div>
+    {% endif %}
+
+    {% if section.settings.view_all_link != blank and section.settings.view_all_label != blank %}
+      <div class="multicolumn-slider__view-all">
+        <a href="{{ section.settings.view_all_link }}" class="multicolumn-slider__view-all-button">
+          {{ section.settings.view_all_label | escape }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+.multicolumn-slider {
+  --section-padding-y: 60px;
+  --card-radius: 0px;
+  --text-dark: #1a1a1a;
+  --text-light: #666;
+  --border-color: #e5e5e5;
+  --button-hover: #333;
+  --image-aspect-ratio: auto;
+  padding: var(--section-padding-y) 0;
+  background: {{ section.settings.background_color }};
+  position: relative;
+}
+
+.multicolumn-slider__inner {
+  max-width: var(--section-width, 90%);
+  margin: 0 auto;
+  padding: 0 60px;
+  position: relative;
+}
+
+/* Header Styles */
+.multicolumn-slider__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.multicolumn-slider__title {
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
+  color: var(--text-dark);
+}
+
+.multicolumn-slider__subtitle {
+  font-size: 14px;
+  color: var(--text-light);
+  margin: 0;
+}
+
+/* Track & Slides Container */
+.multicolumn-slider__track-wrapper {
+  position: relative;
+  overflow: visible;
+}
+
+.multicolumn-slider__track {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.multicolumn-slider__track::-webkit-scrollbar {
+  display: none;
+}
+
+.multicolumn-slider__slides {
+  display: flex;
+  gap: var(--card-gap, 20px);
+  width: max-content;
+}
+
+/* Individual Slide */
+.multicolumn-slider__slide {
+  flex-shrink: 0;
+  width: calc((100% / 3) - (var(--card-gap, 20px) * 2 / 3));
+  max-width: 400px;
+}
+
+/* Card Styles */
+.multicolumn-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.multicolumn-card__image-wrapper {
+  overflow: hidden;
+  border-radius: 0;
+  background: #f5f5f5;
+  margin-bottom: 20px;
+}
+
+/* Image Aspect Ratios */
+.multicolumn-slider[data-image-style="square"] .multicolumn-card__image-wrapper {
+  aspect-ratio: 1 / 1;
+}
+
+.multicolumn-slider[data-image-style="portrait"] .multicolumn-card__image-wrapper {
+  aspect-ratio: 3 / 4;
+}
+
+.multicolumn-slider[data-image-style="portrait-2x3"] .multicolumn-card__image-wrapper {
+  aspect-ratio: 2 / 3;
+}
+
+.multicolumn-slider[data-image-style="landscape"] .multicolumn-card__image-wrapper {
+  aspect-ratio: 4 / 3;
+}
+
+.multicolumn-slider[data-image-style="landscape-16x9"] .multicolumn-card__image-wrapper {
+  aspect-ratio: 16 / 9;
+}
+
+.multicolumn-slider[data-image-style="natural"] .multicolumn-card__image-wrapper {
+  aspect-ratio: auto;
+}
+
+.multicolumn-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.multicolumn-card:hover .multicolumn-card__image {
+  transform: scale(1.03);
+}
+
+.placeholder-svg {
+  width: 100%;
+  height: 100%;
+  background: #eaeaea;
+}
+
+.multicolumn-card__content {
+  padding: 0 4px;
+}
+
+.multicolumn-card__heading {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0 0 12px;
+  color: var(--text-dark);
+  letter-spacing: -0.01em;
+}
+
+.multicolumn-card__text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-light);
+  margin-bottom: 16px;
+}
+
+.multicolumn-card__text p {
+  margin: 0;
+}
+
+.multicolumn-card__button {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  color: var(--text-dark);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 4px;
+  transition: border-color 0.2s ease;
+}
+
+.multicolumn-card__button:hover {
+  border-bottom-color: var(--text-dark);
+}
+
+/* Navigation Arrows - Fixed positioning */
+.multicolumn-slider__arrow {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 20;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+}
+
+.multicolumn-slider__arrow:hover {
+  background: #f8f8f8;
+  border-color: #999;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.multicolumn-slider__arrow--prev {
+  left: 0;
+}
+
+.multicolumn-slider__arrow--next {
+  right: 0;
+}
+
+/* Dots Pagination */
+.multicolumn-slider__dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 32px;
+}
+
+.multicolumn-slider__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  border: none;
+}
+
+.multicolumn-slider__dot--active {
+  width: 24px;
+  border-radius: 4px;
+  background: var(--text-dark);
+}
+
+/* View All Button */
+.multicolumn-slider__view-all {
+  text-align: center;
+  margin-top: 48px;
+}
+
+.multicolumn-slider__view-all-button {
+  display: inline-block;
+  padding: 12px 32px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  color: var(--text-dark);
+  border: 1px solid var(--border-color);
+  border-radius: 40px;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.multicolumn-slider__view-all-button:hover {
+  border-color: var(--text-dark);
+  background: #fafafa;
+}
+
+/* Responsive */
+@media screen and (max-width: 989px) {
+  .multicolumn-slider__inner {
+    padding: 0 20px;
+  }
+  
+  .multicolumn-slider__slide {
+    width: calc((100% / 2) - (var(--card-gap, 20px) / 2));
+  }
+
+  .multicolumn-slider__arrow {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .multicolumn-slider__inner {
+    padding: 0 16px;
+  }
+  
+  .multicolumn-slider__slide {
+    width: calc(100% - 40px);
+    max-width: none;
+  }
+
+  .multicolumn-slider__title {
+    font-size: 24px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Multi-column slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Inside Loro Piana"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "Discover our latest stories"
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "section_width",
+      "min": 60,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Section width",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Gap between cards",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "image_style",
+      "label": "Image shape",
+      "options": [
+        { "value": "square", "label": "Square (1:1)" },
+        { "value": "portrait", "label": "Portrait (3:4)" },
+        { "value": "portrait-2x3", "label": "Portrait (2:3)" },
+        { "value": "landscape", "label": "Landscape (4:3)" },
+        { "value": "landscape-16x9", "label": "Widescreen (16:9)" },
+        { "value": "natural", "label": "Natural" }
+      ],
+      "default": "portrait"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Slider Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show navigation arrows",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dots",
+      "label": "Show pagination dots",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_scroll",
+      "label": "Enable auto-scroll",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "auto_scroll_speed",
+      "min": 2000,
+      "max": 8000,
+      "step": 500,
+      "unit": "ms",
+      "label": "Auto-scroll interval",
+      "default": 4000
+    },
+    {
+      "type": "header",
+      "content": "Button & Link"
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "View all button text",
+      "default": "View all"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View all button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Loro Piana at CSIOPiazza di Siena"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Description",
+          "default": "<p>Loro Piana returns to Rome for the 93rd edition of the Concours de Saut International Officiel Piazza di Siena.</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Learn more"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Multi-column slider",
+      "blocks": [
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% javascript %}
+class MultiColumnSlider {
+  constructor(section) {
+    this.section = section;
+    this.track = section.querySelector('.multicolumn-slider__track');
+    this.slidesContainer = section.querySelector('.multicolumn-slider__slides');
+    this.prevBtn = section.querySelector('.multicolumn-slider__arrow--prev');
+    this.nextBtn = section.querySelector('.multicolumn-slider__arrow--next');
+    this.dotsContainer = section.querySelector('.multicolumn-slider__dots');
+    this.showArrows = {{ section.settings.show_arrows | default: true }};
+    this.showDots = {{ section.settings.show_dots | default: true }};
+    this.autoScroll = {{ section.settings.auto_scroll | default: false }};
+    this.autoScrollSpeed = {{ section.settings.auto_scroll_speed | default: 4000 }};
+    this.currentIndex = 0;
+    this.autoScrollInterval = null;
+    this.slideWidth = 0;
+    this.slidesToShow = 3;
+    this.totalSlides = 0;
+
+    this.init();
+  }
+
+  init() {
+    this.totalSlides = this.section.querySelectorAll('.multicolumn-slider__slide').length;
+    this.calculateDimensions();
+    this.setupEventListeners();
+    this.updateDots();
+    this.updateArrows();
+
+    if (this.autoScroll && this.totalSlides > this.slidesToShow) {
+      this.startAutoScroll();
+    }
+
+    window.addEventListener('resize', () => {
+      this.calculateDimensions();
+      this.scrollToSlide(this.currentIndex, false);
+      this.updateDots();
+    });
+  }
+
+  calculateDimensions() {
+    const slide = this.section.querySelector('.multicolumn-slider__slide');
+    if (!slide) return;
+
+    const gap = parseInt(getComputedStyle(this.slidesContainer).gap) || 20;
+    const containerWidth = this.track.clientWidth;
+    this.slideWidth = slide.offsetWidth;
+    this.slidesToShow = Math.floor(containerWidth / (this.slideWidth + gap));
+    this.slidesToShow = Math.max(1, Math.min(this.slidesToShow, 3));
+  }
+
+  setupEventListeners() {
+    if (this.prevBtn && this.showArrows) {
+      this.prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.prevSlide();
+      });
+    }
+    if (this.nextBtn && this.showArrows) {
+      this.nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.nextSlide();
+      });
+    }
+
+    if (this.showDots && this.dotsContainer) {
+      this.dotsContainer.addEventListener('click', (e) => {
+        const dot = e.target.closest('.multicolumn-slider__dot');
+        if (dot) {
+          const index = parseInt(dot.dataset.index);
+          this.scrollToSlide(index);
+        }
+      });
+    }
+
+    this.track.addEventListener('scroll', () => {
+      this.updateActiveState();
+    });
+  }
+
+  scrollToSlide(index, smooth = true) {
+    const slides = this.section.querySelectorAll('.multicolumn-slider__slide');
+    if (!slides.length) return;
+
+    const maxIndex = Math.max(0, this.totalSlides - this.slidesToShow);
+    this.currentIndex = Math.min(maxIndex, Math.max(0, index));
+
+    let scrollPosition = 0;
+    const gap = parseInt(getComputedStyle(this.slidesContainer).gap) || 20;
+    
+    for (let i = 0; i < this.currentIndex; i++) {
+      scrollPosition += slides[i].offsetWidth + gap;
+    }
+
+    this.track.scrollTo({
+      left: scrollPosition,
+      behavior: smooth ? 'smooth' : 'auto'
+    });
+
+    this.updateArrows();
+    this.updateDots();
+  }
+
+  nextSlide() {
+    const maxIndex = Math.max(0, this.totalSlides - this.slidesToShow);
+    if (this.currentIndex < maxIndex) {
+      this.scrollToSlide(this.currentIndex + 1);
+    }
+  }
+
+  prevSlide() {
+    if (this.currentIndex > 0) {
+      this.scrollToSlide(this.currentIndex - 1);
+    }
+  }
+
+  updateArrows() {
+    if (!this.showArrows || !this.prevBtn || !this.nextBtn) return;
+
+    const maxIndex = Math.max(0, this.totalSlides - this.slidesToShow);
+    
+    if (this.currentIndex <= 0) {
+      this.prevBtn.style.opacity = '0.3';
+      this.prevBtn.style.cursor = 'not-allowed';
+    } else {
+      this.prevBtn.style.opacity = '1';
+      this.prevBtn.style.cursor = 'pointer';
+    }
+    
+    if (this.currentIndex >= maxIndex) {
+      this.nextBtn.style.opacity = '0.3';
+      this.nextBtn.style.cursor = 'not-allowed';
+    } else {
+      this.nextBtn.style.opacity = '1';
+      this.nextBtn.style.cursor = 'pointer';
+    }
+  }
+
+  updateDots() {
+    if (!this.showDots || !this.dotsContainer) return;
+
+    const maxIndex = Math.max(0, this.totalSlides - this.slidesToShow);
+    const dotCount = maxIndex + 1;
+
+    this.dotsContainer.innerHTML = '';
+    for (let i = 0; i < dotCount; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'multicolumn-slider__dot';
+      if (i === this.currentIndex) {
+        dot.classList.add('multicolumn-slider__dot--active');
+      }
+      dot.dataset.index = i;
+      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+      this.dotsContainer.appendChild(dot);
+    }
+  }
+
+  updateActiveState() {
+    const scrollLeft = this.track.scrollLeft;
+    const slides = this.section.querySelectorAll('.multicolumn-slider__slide');
+    let accumulatedWidth = 0;
+    const gap = parseInt(getComputedStyle(this.slidesContainer).gap) || 20;
+
+    let newIndex = 0;
+    for (let i = 0; i < slides.length; i++) {
+      const slideWidth = slides[i].offsetWidth;
+      if (scrollLeft >= accumulatedWidth - slideWidth / 2) {
+        newIndex = i;
+      }
+      accumulatedWidth += slideWidth + gap;
+    }
+
+    newIndex = Math.min(newIndex, Math.max(0, this.totalSlides - this.slidesToShow));
+    
+    if (newIndex !== this.currentIndex) {
+      this.currentIndex = newIndex;
+      this.updateArrows();
+      this.updateDots();
+    }
+  }
+
+  startAutoScroll() {
+    this.autoScrollInterval = setInterval(() => {
+      const maxIndex = Math.max(0, this.totalSlides - this.slidesToShow);
+      if (this.currentIndex >= maxIndex) {
+        this.scrollToSlide(0);
+      } else {
+        this.nextSlide();
+      }
+    }, this.autoScrollSpeed);
+
+    this.track.addEventListener('mouseenter', () => this.stopAutoScroll());
+    this.track.addEventListener('mouseleave', () => this.startAutoScroll());
+  }
+
+  stopAutoScroll() {
+    if (this.autoScrollInterval) {
+      clearInterval(this.autoScrollInterval);
+      this.autoScrollInterval = null;
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.multicolumn-slider').forEach(section => {
+    new MultiColumnSlider(section);
+  });
+});
+
+if (Shopify.designMode) {
+  document.addEventListener('shopify:section:load', (event) => {
+    new MultiColumnSlider(event.target);
+  });
+}
+{% endjavascript %}

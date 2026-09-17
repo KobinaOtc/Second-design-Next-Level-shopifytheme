@@ -1,0 +1,1119 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "video_hero_Hjwf94": {
+      "type": "video-hero",
+      "disabled": true,
+      "name": "Video hero",
+      "settings": {
+        "container": "w-full",
+        "hero_size": "adapt",
+        "video_ratio": "16/9",
+        "show_overlay": false,
+        "video_type": "shopify",
+        "shopify_video": "shopify://files/videos/Desert V2.mp4",
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "content_in_container": false,
+        "content_position": "center middle",
+        "text_alignment": "center",
+        "text_size": "medium",
+        "text_color": "white",
+        "title": "",
+        "subtitle": "",
+        "text": "",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "m-button--primary",
+        "button_size": "",
+        "use_content_above": false,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "has_video_QKAjPF": {
+      "type": "has-video",
+      "name": "Background Video - Custom",
+      "settings": {
+        "bg_video_dom": "shopify://files/videos/Desert V2.mp4",
+        "text_position": "middle-center",
+        "text_align": "center",
+        "lg_height": 1000,
+        "md_height": 500,
+        "parent_width": true,
+        "overlay_style": "text_shadow"
+      }
+    },
+    "1621243260e1af0c20": {
+      "type": "slider",
+      "blocks": {
+        "1621243260e1af0c20-0": {
+          "type": "slider_item",
+          "settings": {
+            "background": "shopify://shop_images/Greeting_Card-13.jpg",
+            "mb_background": "shopify://shop_images/Greeting_Card-13_6ca846d4-6fbd-42ac-a7d4-c7c60435e9c3.jpg",
+            "content_in_container": false,
+            "content_position": "center bottom",
+            "text_alignment": "center",
+            "text_size": "medium",
+            "text_color": "white",
+            "subheading": "Empowerment. Elegance. Legacy.",
+            "title": "The Essence of Every Queen",
+            "description": "",
+            "image_link": "shopify://collections/card",
+            "button_text": "Shop Now",
+            "button_link": "shopify://collections/card",
+            "button_style": "m-button--primary",
+            "button_size": "",
+            "show_footer": false,
+            "footer_alignment": "end",
+            "footer_text": "",
+            "footer_button": "",
+            "footer_link": ""
+          }
+        },
+        "slider_item_qrX6Q4": {
+          "type": "slider_item",
+          "settings": {
+            "background": "shopify://shop_images/Screenshot_2025-04-28_at_3.13.42_PM.png",
+            "mb_background": "shopify://shop_images/download_10_ebc7b678-3bc7-4eed-8806-5ba815f04f48.png",
+            "content_in_container": false,
+            "content_position": "center bottom",
+            "text_alignment": "center",
+            "text_size": "large",
+            "text_color": "white",
+            "subheading": "Elegance in Every Word",
+            "title": "Sweetness in Every Card",
+            "description": "<p> </p>",
+            "image_link": "shopify://collections/mugs",
+            "button_text": "Shop Now",
+            "button_link": "shopify://collections/mugs",
+            "button_style": "m-button--primary",
+            "button_size": "",
+            "show_footer": false,
+            "footer_alignment": "end",
+            "footer_text": "",
+            "footer_button": "",
+            "footer_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "1621243260e1af0c20-0",
+        "slider_item_qrX6Q4"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".m-button--primary {background: white;}"
+      ],
+      "settings": {
+        "container": "w-full",
+        "slideshow_height": "fullscreen",
+        "show_overlay": true,
+        "dots_position": "bottom",
+        "dots_color": "dark",
+        "show_dots": false,
+        "show_arrows": false,
+        "autorotate": true,
+        "autorotate_speed": 4,
+        "use_content_above": true,
+        "custom_class": "sf-home__slideshow",
+        "animations": "inherit"
+      }
+    },
+    "scrolling_promotion_n3TzYa": {
+      "type": "scrolling-promotion",
+      "blocks": {
+        "announcement_6VqcJ8": {
+          "type": "announcement",
+          "settings": {
+            "custom_svg": "",
+            "icon_size": "medium",
+            "text": "Unveil the Magic of Greeting Cards Designed for You",
+            "text_size": 20,
+            "text_link": ""
+          }
+        },
+        "announcement_G7k6jd": {
+          "type": "announcement",
+          "settings": {
+            "custom_svg": "",
+            "icon_size": "medium",
+            "text": "From Our Heart to Yours, Cards That Capture Every Emotion",
+            "text_size": 20,
+            "text_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_6VqcJ8",
+        "announcement_G7k6jd"
+      ],
+      "settings": {
+        "container": "w-full",
+        "direction": "left",
+        "speed": 16,
+        "item_gap": 50,
+        "item_gap_mobile": 30,
+        "text_color": "#ffffff",
+        "bg_color": "#d6c6ae",
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "custom_class": ""
+      }
+    },
+    "fc04dcc2-107f-43d4-9268-392b84824075": {
+      "type": "custom-content",
+      "blocks": {
+        "28c78222-e2a4-4528-b84f-c9dddb089e8e": {
+          "type": "text",
+          "settings": {
+            "title": "",
+            "subheading": "",
+            "text": "<p> </p>",
+            "width": "16%",
+            "alignment": "center",
+            "align_text": "left",
+            "text_size": "medium",
+            "text_color": "black",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "m-button--primary",
+            "button_size": "",
+            "block_custom_class": "",
+            "animations": "inherit"
+          }
+        },
+        "template--21677787119930__fc04dcc2-107f-43d4-9268-392b84824075-text-1": {
+          "type": "text",
+          "settings": {
+            "title": "Welcome Home, Queen.",
+            "subheading": "",
+            "text": "<p>You have arrived at a place created entirely for her. For the woman who deserves to be honored, celebrated, and remembered beautifully. Noir Nectar International Shopping for someone extraordinary? We will help you find the perfect gift for her</p>",
+            "width": "66%",
+            "alignment": "center",
+            "align_text": "center",
+            "text_size": "medium",
+            "text_color": "black",
+            "button_label": "Find Her Perfect Gift →",
+            "button_link": "shopify://collections/card",
+            "button_style": "m-button--primary",
+            "button_size": "",
+            "block_custom_class": "",
+            "animations": "inherit"
+          }
+        }
+      },
+      "block_order": [
+        "28c78222-e2a4-4528-b84f-c9dddb089e8e",
+        "template--21677787119930__fc04dcc2-107f-43d4-9268-392b84824075-text-1"
+      ],
+      "custom_css": [
+        ".m-richtext__description {font-size: 120%;}"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "description": "",
+        "header_alignment": "center",
+        "container": "container-fluid",
+        "background_color": "#f1ece5",
+        "gap": 30,
+        "use_scroll_mobile": false,
+        "gap_mobile": 16,
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": ""
+      }
+    },
+    "image_with_text_DkrhAy": {
+      "type": "image-with-text",
+      "name": "Image with text",
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "container": "container-fluid",
+        "background_color": "rgba(0,0,0,0)",
+        "item_gap": 100,
+        "item_gap_mobile": 30,
+        "image": "shopify://shop_images/option1_1024.png",
+        "link": "",
+        "layout": "left",
+        "image_column_size": "6",
+        "hover_effect": false,
+        "title": "We do not simply sell gifts.",
+        "sub_title": "",
+        "text": "<p>Every woman deserves to feel seen, celebrated, and remembered beautifully.</p><p>We create emotional keepsakes crafted with intention.</p><p>Every blanket, every card, every candle — made to honor her story.</p><p>Because she is not just anyone. She is a Queen.</p>",
+        "text_size": "medium",
+        "content_alignment": "left",
+        "button_label": "Read More",
+        "button_link": "shopify://pages/about-us",
+        "button_style": "m-button--primary",
+        "button_size": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "multi_col_fa9tzW": {
+      "type": "multi-col",
+      "blocks": {
+        "slide_LR7QBf": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/classic-dad-hat-white-front-69d12db5809a0.jpg",
+            "heading": "Need to include a cap",
+            "text": "",
+            "button_label": "Buy Now",
+            "button_link": "shopify://products/unapologetically-royal-dad-hat"
+          }
+        },
+        "slide_xfBdRm": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Greeting-Card-4_3.jpg",
+            "heading": "A card that says what your heart could never find words for.",
+            "text": "",
+            "button_label": "Buy Now",
+            "button_link": "shopify://products/queen-amina-the-fearless-warrior"
+          }
+        },
+        "slide_NjY6JU": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/A_Queens_Legacy_Candle.png",
+            "heading": "A candle that fills the room with warmth and remembrance.",
+            "text": "",
+            "button_label": "Learn more",
+            "button_link": ""
+          }
+        },
+        "slide_Bprj3D": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/white-glossy-mug-white-11-oz-handle-on-left-67af7dc92c75c.jpg",
+            "heading": "A mug that reminds her every morning — she is royalty",
+            "text": "",
+            "button_label": "Learn more",
+            "button_link": ""
+          }
+        },
+        "slide_apm9ch": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/64d7c415-96d2-45fc-8298-00505d15bbb1.png",
+            "heading": "A blanket that wraps her in her own story",
+            "text": "",
+            "button_label": "Learn more",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_LR7QBf",
+        "slide_xfBdRm",
+        "slide_NjY6JU",
+        "slide_Bprj3D",
+        "slide_apm9ch"
+      ],
+      "name": "Multi-column slider",
+      "settings": {
+        "title": "THE EXPERIENCE",
+        "subtitle": "",
+        "section_width": 100,
+        "card_gap": 20,
+        "image_style": "square",
+        "background_color": "#ffffff",
+        "show_arrows": true,
+        "show_dots": true,
+        "auto_scroll": false,
+        "auto_scroll_speed": 4000,
+        "view_all_label": "View all",
+        "view_all_link": ""
+      }
+    },
+    "16225316461d1cff80": {
+      "type": "collection-list",
+      "blocks": {
+        "collection_block_AGTC7c": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "card",
+            "title": "",
+            "item_image": "{{ block.settings.collection.image }}"
+          }
+        },
+        "collection_block_fiLdze": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "shirts",
+            "title": "",
+            "item_image": "{{ block.settings.collection.image }}"
+          }
+        },
+        "collection_block_9Q9kfX": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "mugs",
+            "title": "",
+            "item_image": "{{ block.settings.collection.image }}"
+          }
+        },
+        "collection_block_G36CQ3": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "jewelry",
+            "title": "",
+            "item_image": "shopify://shop_images/Necklace-4.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "collection_block_AGTC7c",
+        "collection_block_fiLdze",
+        "collection_block_9Q9kfX",
+        "collection_block_G36CQ3"
+      ],
+      "custom_css": [],
+      "settings": {
+        "heading": "Shop By Category",
+        "heading_size": "h3",
+        "subheading": "",
+        "description": "",
+        "header_alignment": "center",
+        "container": "container-fluid",
+        "background_color": "rgba(0,0,0,0)",
+        "layout": "grid",
+        "expanded": false,
+        "card_style": "standard",
+        "text_alignment": "center",
+        "hover_effect": "scaling-up",
+        "show_product_count": false,
+        "count_inline_title": false,
+        "image_rounded": false,
+        "items_per_row": 3,
+        "item_gap": 20,
+        "enable_slider": true,
+        "show_pagination": true,
+        "show_navigation": true,
+        "autorotate": true,
+        "autorotate_speed": 4,
+        "mobile_disable_slider": false,
+        "use_scroll_mobile": true,
+        "mobile_gap": 16,
+        "hidden_slide_control_mobile": true,
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "image_with_text_1_eg3wzn": {
+      "type": "image-with-text-1",
+      "blocks": {
+        "item_UCQeW6": {
+          "type": "item",
+          "settings": {
+            "content_position": "center_center",
+            "content_alignment": "center",
+            "text_size": "medium",
+            "text_color": "white",
+            "image": "shopify://shop_images/exec-14528e6b-af78-48fc-93b1-e431fb0377f0-1_1024.png",
+            "link": "",
+            "title": "Bringing Comfort",
+            "subtitle": "",
+            "button_label": "Shop now",
+            "button_style": "m-button--primary",
+            "button_size": "",
+            "button_fixed": false
+          }
+        },
+        "item_PPwzge": {
+          "type": "item",
+          "settings": {
+            "content_position": "center_center",
+            "content_alignment": "center",
+            "text_size": "medium",
+            "text_color": "white",
+            "image": "shopify://shop_images/classic-dad-hat-black-right-side-69d090cd7c40a.jpg",
+            "link": "",
+            "title": "More Than Products",
+            "subtitle": "",
+            "button_label": "",
+            "button_style": "m-button--primary",
+            "button_size": "",
+            "button_fixed": false
+          }
+        },
+        "item_CnKy78": {
+          "type": "item",
+          "settings": {
+            "content_position": "center_center",
+            "content_alignment": "center",
+            "text_size": "medium",
+            "text_color": "white",
+            "image": "shopify://shop_images/womens-relaxed-t-shirt-black-front-69d12c18544d9.jpg",
+            "link": "",
+            "title": "Created to Be Felt",
+            "subtitle": "",
+            "button_label": "",
+            "button_style": "m-button--primary",
+            "button_size": "",
+            "button_fixed": false
+          }
+        },
+        "item_BQWiQx": {
+          "type": "item",
+          "settings": {
+            "content_position": "center_center",
+            "content_alignment": "center",
+            "text_size": "medium",
+            "text_color": "white",
+            "image": "shopify://shop_images/Necklace-1.jpg",
+            "link": "",
+            "title": "Curated for Life",
+            "subtitle": "",
+            "button_label": "",
+            "button_style": "m-button--primary",
+            "button_size": "",
+            "button_fixed": false
+          }
+        },
+        "item_VzDVqc": {
+          "type": "item",
+          "settings": {
+            "content_position": "center_center",
+            "content_alignment": "center",
+            "text_size": "medium",
+            "text_color": "white",
+            "image": "shopify://shop_images/white-glossy-mug-white-11-oz-donuts-67af84d09aa60.jpg",
+            "link": "",
+            "title": "Crafted with Purpose",
+            "subtitle": "",
+            "button_label": "",
+            "button_style": "m-button--primary",
+            "button_size": "",
+            "button_fixed": false
+          }
+        }
+      },
+      "block_order": [
+        "item_UCQeW6",
+        "item_PPwzge",
+        "item_CnKy78",
+        "item_BQWiQx",
+        "item_VzDVqc"
+      ],
+      "name": "Image cards",
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "description": "",
+        "header_alignment": "center",
+        "container": "container-fluid",
+        "background_color": "rgba(0,0,0,0)",
+        "layout": "layout_1",
+        "gap": 30,
+        "use_scroll_mobile": true,
+        "mobile_gap": 10,
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "featured_collection_wNCeY4": {
+      "type": "featured-collection",
+      "name": "Featured collection",
+      "settings": {
+        "heading": "Our Best Seller",
+        "heading_size": "h3",
+        "subheading": "",
+        "description": "",
+        "header_alignment": "center",
+        "container": "container-fluid",
+        "background_color": "rgba(0,0,0,0)",
+        "collection": "card",
+        "enable_flashsale": false,
+        "show_countdown": false,
+        "product_to_show": 9,
+        "items_per_row": 4,
+        "item_gap": 30,
+        "pcard_layout": "",
+        "pcard_image_ratio": "",
+        "show_vendor": false,
+        "hide_title": false,
+        "enable_slider": false,
+        "show_pagination": false,
+        "show_navigation": false,
+        "button_type": "link",
+        "button_text": "Shop more",
+        "button_style": "m-button--primary",
+        "button_size": "",
+        "infinite_load": false,
+        "max_page_load": 3,
+        "mobile_disable_slider": false,
+        "use_scroll_mobile": true,
+        "item_gap_mobile": 16,
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "video_3rzf99": {
+      "type": "video",
+      "disabled": true,
+      "name": "Video",
+      "settings": {
+        "container": "w-full",
+        "background_color": "",
+        "video_type": "shopify",
+        "shopify_video": "shopify://files/videos/NoirNectar--.mp4",
+        "video_link": "https://youtu.be/BbTf6-DTWl0?si=0J-pjGaAsZHn3R4M",
+        "ratio": "21:9",
+        "image": "shopify://shop_images/Screenshot_2025-04-28_at_3.13.42_PM.png",
+        "video_title": "Noir Nectar",
+        "text_size": "medium",
+        "text_color": "white",
+        "play_style": "outline",
+        "play_size": "medium",
+        "width": "",
+        "autoplay": true,
+        "loop": true,
+        "muted": true,
+        "show_controls": true,
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "9a01f898-27a3-487f-a7f5-8f399ba477fb": {
+      "type": "image-with-text-2",
+      "disabled": true,
+      "settings": {
+        "container": "w-full",
+        "hero_size": "medium",
+        "show_overlay": true,
+        "image": "shopify://shop_images/Untitled_design-17_36dcc205-b22e-4aa4-a699-ff560b1969ff.png",
+        "bg_position": "center",
+        "image_link": "",
+        "parallax": false,
+        "content_in_container": false,
+        "content_position": "right middle",
+        "text_alignment": "center",
+        "text_size": "medium",
+        "text_color": "white",
+        "title": "Elegance Meets Grace in Every Card",
+        "subtitle": "",
+        "text": "<p> </p>",
+        "button_label": "Shop Now",
+        "button_link": "shopify://collections/products",
+        "button_style": "m-button--primary",
+        "button_size": "",
+        "text_alignment_mobile": "center",
+        "mb_image": "shopify://shop_images/Untitled_design-17_03758a4a-decf-49f3-add7-1a933b7a8dff.png",
+        "use_content_above": false,
+        "custom_class": "",
+        "animations": "inherit",
+        "enable_bg_zoom_effect": true
+      }
+    },
+    "ed0634fb-0434-4bca-ae09-c60c28eb8024": {
+      "type": "image-with-text",
+      "disabled": true,
+      "custom_css": [
+        ".m-richtext__description {font-size: 18px;}",
+        " {padding-left: 100px;}",
+        "@media (max-width: 767px) {{padding-left: 0px !important; }}"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "container": "container",
+        "background_color": "rgba(0,0,0,0)",
+        "item_gap": 100,
+        "item_gap_mobile": 30,
+        "image": "shopify://shop_images/model_mockups__48_7e081895-0b5a-4d32-bdfc-850f7d4686cb.png",
+        "link": "",
+        "layout": "right",
+        "image_column_size": "6",
+        "hover_effect": true,
+        "title": "",
+        "sub_title": "About Us",
+        "text": "<p><strong>At Noir Nectar Greeting Cards and Heirlooms, we believe words are sacred—and when paired with art, they become a ministry of beauty, memory, and belonging.</strong></p><p><strong>Our mission is to uplift and celebrate Black women with intention, reverence, and truth—without apology. We create more than cards; we create keepsakes that speak to the soul, honor legacy, and remind each Queen of her divine worth.</strong></p><p><strong>Whether it’s a whispered love note, a powerful birthday blessing, or a sacred message of gratitude, each card is crafted to express what words alone often cannot. Every detail—from design to language—is chosen to reflect the richness, resilience, and radiant spirit of Black womanhood.</strong></p><p><strong>This mission is deeply personal to me.<br/>As a Black woman, I know what it means to fight for your worth in a world that often overlooks you. I know the quiet strength it takes to keep going, the beauty in healing, and the power of finally realizing—you are enough. Noir Nectar was born from that realization. It is my love letter to us. To every Queen who deserves to be honored, celebrated, and seen.</strong></p><p><strong>We don’t just write cards.<br/>We honor stories.<br/>We crown moments.<br/>We speak light—Queen to Queen.</strong></p>",
+        "text_size": "medium",
+        "content_alignment": "center",
+        "button_label": "Read More About Us",
+        "button_link": "shopify://pages/about-us",
+        "button_style": "m-button--primary",
+        "button_size": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "slider_jw3DhW": {
+      "type": "slider",
+      "blocks": {
+        "slider_item_TVA6g6": {
+          "type": "slider_item",
+          "settings": {
+            "background": "shopify://shop_images/WhatsApp_Image_2025-04-17_at_15.37.31_3.jpg",
+            "mb_background": "shopify://shop_images/WhatsApp_Image_2025-04-17_at_15.37.31_3.jpg",
+            "content_in_container": false,
+            "content_position": "center middle",
+            "text_alignment": "center",
+            "text_size": "medium",
+            "text_color": "white",
+            "subheading": "",
+            "title": "Noir Nectar 🤝🏾 Africa With Us Foundation",
+            "description": "<p>Noir Nectar will now be partnering with Africa With Us Foundation Inc. \"With every purchase, 10% is donated to Africa With Us Foundation Inc. to support orphanages across Africa. Together, we are spreading love, care, and opportunity—one gift at a time.\"<br/></p>",
+            "image_link": "",
+            "button_text": "Shop now",
+            "button_link": "",
+            "button_style": "m-button--primary",
+            "button_size": "",
+            "show_footer": false,
+            "footer_alignment": "end",
+            "footer_text": "New Collection",
+            "footer_button": "Shop Now",
+            "footer_link": ""
+          }
+        },
+        "slider_item_AV9GK6": {
+          "type": "slider_item",
+          "settings": {
+            "background": "shopify://shop_images/WhatsApp_Image_2025-04-17_at_15.37.31_2.jpg",
+            "mb_background": "shopify://shop_images/WhatsApp_Image_2025-04-17_at_15.37.31.jpg",
+            "content_in_container": false,
+            "content_position": "center middle",
+            "text_alignment": "center",
+            "text_size": "medium",
+            "text_color": "white",
+            "subheading": "",
+            "title": "Noir Nectar 🤝🏾 Africa With Us Foundation",
+            "description": "<p>Noir Nectar will now be partnering with Africa With Us Foundation Inc. \"With every purchase, 10% is donated to Africa With Us Foundation Inc. to support orphanages across Africa. Together, we are spreading love, care, and opportunity—one gift at a time.\"<br/></p>",
+            "image_link": "",
+            "button_text": "Shop now",
+            "button_link": "",
+            "button_style": "m-button--primary",
+            "button_size": "",
+            "show_footer": false,
+            "footer_alignment": "end",
+            "footer_text": "New Collection",
+            "footer_button": "Shop Now",
+            "footer_link": ""
+          }
+        },
+        "slider_item_qhwH6i": {
+          "type": "slider_item",
+          "settings": {
+            "background": "shopify://shop_images/WhatsApp_Image_2025-04-17_at_15.37.31_1.jpg",
+            "mb_background": "shopify://shop_images/WhatsApp_Image_2025-04-17_at_15.37.31_1.jpg",
+            "content_in_container": true,
+            "content_position": "center middle",
+            "text_alignment": "center",
+            "text_size": "medium",
+            "text_color": "white",
+            "subheading": "",
+            "title": "Noir Nectar 🤝🏾 Africa With Us Foundation",
+            "description": "<p>Noir Nectar will now be partnering with Africa With Us Foundation Inc. \"With every purchase, 10% is donated to Africa With Us Foundation Inc. to support orphanages across Africa. Together, we are spreading love, care, and opportunity—one gift at a time.\"<br/></p>",
+            "image_link": "",
+            "button_text": "Shop now",
+            "button_link": "",
+            "button_style": "m-button--primary",
+            "button_size": "",
+            "show_footer": false,
+            "footer_alignment": "end",
+            "footer_text": "New Collection",
+            "footer_button": "Shop Now",
+            "footer_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slider_item_TVA6g6",
+        "slider_item_AV9GK6",
+        "slider_item_qhwH6i"
+      ],
+      "disabled": true,
+      "name": "Slideshow",
+      "settings": {
+        "container": "w-full",
+        "slideshow_height": "small",
+        "show_overlay": true,
+        "dots_position": "bottom",
+        "dots_color": "light",
+        "show_dots": false,
+        "show_arrows": false,
+        "autorotate": false,
+        "autorotate_speed": 10,
+        "use_content_above": false,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "new_featured_product_7dH8dc": {
+      "type": "new-featured-product",
+      "blocks": {
+        "title_igq9mM": {
+          "type": "title",
+          "settings": {}
+        },
+        "price_78Ue9J": {
+          "type": "price",
+          "settings": {
+            "show_saving": false,
+            "sale_badge_type": "percentage"
+          }
+        },
+        "variant_picker_yr8xXU": {
+          "type": "variant_picker",
+          "settings": {}
+        },
+        "buy_buttons_UcLQtm": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": true,
+            "show_atc_button": true,
+            "show_dynamic_checkout": true
+          }
+        }
+      },
+      "block_order": [
+        "title_igq9mM",
+        "price_78Ue9J",
+        "variant_picker_yr8xXU",
+        "buy_buttons_UcLQtm"
+      ],
+      "name": "Featured product",
+      "settings": {
+        "container": "container",
+        "background_color": "#f1ece5",
+        "featured_product": "eternal-embrace-pendant",
+        "column_gap": 100,
+        "column_gap_mobile": 30,
+        "image_placement": "left",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "testimonials_J3tnKL": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonial_biWWed": {
+          "type": "testimonial",
+          "settings": {
+            "title": "",
+            "description": "<p>Noir Nectar cards are simply beautiful! Every card I’ve sent has brought tears of joy to my friends and family. The designs are stunning, and the messages are heartfelt. I love how they celebrate Black women with such grace and elegance.\"</p>",
+            "footer": "<p>Samantha L.</p>",
+            "image": "shopify://shop_images/Gemini_Generated_Image_ms4mqoms4mqoms4m.png",
+            "image_text": "",
+            "image_link": "",
+            "product": ""
+          }
+        },
+        "testimonial_i7whcg": {
+          "type": "testimonial",
+          "settings": {
+            "title": "",
+            "description": "<p>I have ordered from many card companies but Noir Nectar is in a class by itself. Their designs are fresh but timeless, the fonts and color palette feel regal, and the emotional depth is unmatched. I received so many compliments when I used their cards for my daughter’s first birthday invitations. More than just stationery, they are heirlooms.</p>",
+            "footer": "<p>Tamika K</p>",
+            "image": "shopify://shop_images/classic-dad-hat-black-right-side-69d090cd7c40a.jpg",
+            "image_text": "",
+            "image_link": "",
+            "product": ""
+          }
+        },
+        "testimonial_fQHXJr": {
+          "type": "testimonial",
+          "settings": {
+            "title": "",
+            "description": "<p>I rarely find greeting cards that reflect me, my experiences, or my heritage. Noir Nectar’s cards do just that. From the art to the words, they celebrate Black womanhood in such a holy and beautiful way. When I sent one to my grandmother, she cried and said she felt seen. I will never go back to generic cards again.</p>",
+            "footer": "<p>Simone L.</p>",
+            "image": "shopify://shop_images/Necklace-4.jpg",
+            "image_text": "",
+            "image_link": "",
+            "product": ""
+          }
+        },
+        "testimonial_Aa9MLL": {
+          "type": "testimonial",
+          "settings": {
+            "title": "",
+            "description": "<p>Finding Noir Nectar was like discovering a hidden gem. The quality of the cards is unmatched, and the attention to detail is incredible. I especially appreciate the representation and empowerment of Black women in their designs. These cards are more than just stationery; they are keepsakes</p>",
+            "footer": "<p>Angela M.</p>",
+            "image": "shopify://shop_images/2c5aaf1c-89a2-4c79-8fc2-079bffbbd37f_1024.png",
+            "image_text": "",
+            "image_link": "",
+            "product": ""
+          }
+        },
+        "testimonial_AEVUgU": {
+          "type": "testimonial",
+          "settings": {
+            "title": "",
+            "description": "<p>I’ve never been so moved by a greeting card before. Noir Nectar’s cards resonate deeply with me and those I send them to. They perfectly capture the emotions I want to convey, and their dedication to celebrating Black women is truly inspiring.</p>",
+            "footer": "<p>Emily R.</p>",
+            "image": "shopify://shop_images/classic-dad-hat-black-front-69d090cd7bbdd.jpg",
+            "image_text": "",
+            "image_link": "",
+            "product": "emerald-whister-cuff-bracelet"
+          }
+        },
+        "testimonial_HqLBm8": {
+          "type": "testimonial",
+          "settings": {
+            "title": "",
+            "description": "<p>Every Noir Nectar card I’ve purchased has been a work of art. The combination of sophisticated design and meaningful messages makes each card special. I’m proud to support a company that uplifts and honors Black women in such a beautiful way.</p>",
+            "footer": "<p>Michael D.</p>",
+            "image_text": "",
+            "image_link": "",
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_biWWed",
+        "testimonial_i7whcg",
+        "testimonial_fQHXJr",
+        "testimonial_Aa9MLL",
+        "testimonial_AEVUgU",
+        "testimonial_HqLBm8"
+      ],
+      "settings": {
+        "heading": "What People Are Saying",
+        "heading_size": "h3",
+        "subheading": "",
+        "description": "",
+        "header_alignment": "center",
+        "container": "w-full",
+        "background_color": "#f1ece5",
+        "design": "testimonials-5",
+        "show_stars": true,
+        "autorotate": false,
+        "show_navigation": false,
+        "show_pagination": true,
+        "star_color": "#171717",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "image_comparison_7hT3ER": {
+      "type": "image-comparison",
+      "blocks": {
+        "image_6hrNin": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/EsheTShirt.png",
+            "heading": "Before"
+          }
+        },
+        "image_bq7NyA": {
+          "type": "image",
+          "settings": {
+            "heading": "After"
+          }
+        }
+      },
+      "block_order": [
+        "image_6hrNin",
+        "image_bq7NyA"
+      ],
+      "disabled": true,
+      "name": "Before/after image slider",
+      "settings": {
+        "container": "container-fluid",
+        "heading": "Before/after image slider",
+        "heading_size": "h3",
+        "subheading": "",
+        "description": "",
+        "header_alignment": "center",
+        "layout": "horizontal",
+        "image_height": "adapt",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "custom_class": ""
+      }
+    },
+    "multi_col_nPUXmA": {
+      "type": "multi-col",
+      "blocks": {
+        "slide_VTgee8": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/8ec43cfe-a6fd-42cc-a548-65987af1a20a_1024.png",
+            "heading": "Refined Living",
+            "text": "<p>At Noir Nectar International we create thoughtfully designed collections that bring together elegance, comfort, and purpose. From heartfelt greeting cards to premium lifestyle essentials, every piece is crafted to help you celebrate, connect, and create lasting memories.</p>",
+            "button_label": "Learn more",
+            "button_link": ""
+          }
+        },
+        "slide_TrMdnN": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/0623fe5f-11de-43c3-8032-dbd4535f64a8_1024.png",
+            "heading": "Where Meaning Meets Beauty",
+            "text": "<p>We believe the most treasured items are those that combine beauty with purpose. Our collections are designed to inspire meaningful connections while adding a touch of sophistication to everyday life.</p>",
+            "button_label": "Learn more",
+            "button_link": ""
+          }
+        },
+        "slide_i7qDKJ": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/image-5_1024.png",
+            "heading": "Curated for Life’s Beautiful Moments.",
+            "text": "<p>Every occasion, big or small, deserves to be celebrated with intention. <br/>Noir Nectar International offers carefully curated products that transform everyday experiences into memorable moments. </p>",
+            "button_label": "Learn more",
+            "button_link": ""
+          }
+        },
+        "slide_Ay9zaa": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/HalimaTShirt.png",
+            "heading": "The Art of Thoughtful Living.",
+            "text": "<p>At Noir Nectar International, we blend elegant design with meaningful purpose to create products that enrich daily life and help you express your unique style with confidence and grace.</p>",
+            "button_label": "Learn more",
+            "button_link": ""
+          }
+        },
+        "slide_MCzbm3": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/pexels-airamdphoto-9637931_421f1cb9-fab5-4533-afa4-2447c56aa75b.jpg",
+            "heading": "Luxury in the Details.",
+            "text": "<p>True luxury is found in the details that often go unnoticed. From premium materials to carefully crafted finishes, every Noir Nectar product is designed with intention and care. We</p>",
+            "button_label": "Learn more",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_VTgee8",
+        "slide_TrMdnN",
+        "slide_i7qDKJ",
+        "slide_Ay9zaa",
+        "slide_MCzbm3"
+      ],
+      "custom_css": [
+        "img {border-radius: 0px;}"
+      ],
+      "name": "Multi-column slider",
+      "settings": {
+        "title": "Style, Comfort, and Connection",
+        "subtitle": "Our collections are created with a focus",
+        "section_width": 95,
+        "card_gap": 20,
+        "image_style": "portrait",
+        "background_color": "#f1ece5",
+        "show_arrows": true,
+        "show_dots": true,
+        "auto_scroll": false,
+        "auto_scroll_speed": 4000,
+        "view_all_label": "View all",
+        "view_all_link": ""
+      }
+    },
+    "icon_haseeb_fXwdLw": {
+      "type": "icon-haseeb",
+      "blocks": {
+        "feature_fATC73": {
+          "type": "feature",
+          "settings": {
+            "icon_type": "image",
+            "icon_image": "shopify://shop_images/ico-2024-009.avif",
+            "icon_svg": "",
+            "title": "Free Shipping",
+            "description": "At your service",
+            "link_text": "Discover More -",
+            "link_url": ""
+          }
+        },
+        "feature_YyRxny": {
+          "type": "feature",
+          "settings": {
+            "icon_type": "image",
+            "icon_image": "shopify://shop_images/ico-2024-008.avif",
+            "icon_svg": "",
+            "title": "Free Returns and Exchange",
+            "description": "Easy returns within 30 days",
+            "link_text": "Discover More -",
+            "link_url": ""
+          }
+        },
+        "feature_PAJmyL": {
+          "type": "feature",
+          "settings": {
+            "icon_type": "image",
+            "icon_image": "shopify://shop_images/ico-2024-010.avif",
+            "icon_svg": "",
+            "title": "Book a Private Appointment in Store",
+            "description": "Personalized shopping experience",
+            "link_text": "Discover More -",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "feature_fATC73",
+        "feature_YyRxny",
+        "feature_PAJmyL"
+      ],
+      "name": "3 Icon Feature Row",
+      "settings": {
+        "bg_color": "#f1ece5",
+        "separator_color": "#e0e0e0",
+        "icon_width": 120,
+        "icon_color": "#000000",
+        "title_size": 18,
+        "title_color": "#000000",
+        "description_size": 14,
+        "description_color": "#666666",
+        "link_size": 14,
+        "link_color": "#000000"
+      }
+    }
+  },
+  "order": [
+    "video_hero_Hjwf94",
+    "has_video_QKAjPF",
+    "1621243260e1af0c20",
+    "scrolling_promotion_n3TzYa",
+    "fc04dcc2-107f-43d4-9268-392b84824075",
+    "image_with_text_DkrhAy",
+    "multi_col_fa9tzW",
+    "16225316461d1cff80",
+    "image_with_text_1_eg3wzn",
+    "featured_collection_wNCeY4",
+    "video_3rzf99",
+    "9a01f898-27a3-487f-a7f5-8f399ba477fb",
+    "ed0634fb-0434-4bca-ae09-c60c28eb8024",
+    "slider_jw3DhW",
+    "new_featured_product_7dH8dc",
+    "testimonials_J3tnKL",
+    "image_comparison_7hT3ER",
+    "multi_col_nPUXmA",
+    "icon_haseeb_fXwdLw"
+  ]
+}
