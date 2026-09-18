@@ -386,14 +386,18 @@
                     e.preventDefault();
                     const selectedCard = document.querySelector('.blanket-tier-card.selected');
                     const variantId = masterSelect.value;
-                    const photoCount = selectedCard
-                      ? Number(selectedCard.getAttribute('data-tier-photos'))
-                      : 14;
-                    document.dispatchEvent(
-                      new CustomEvent('open-blanket-modal', {
-                        detail: { variantId, photoCount }
-                      })
-                    );
+                    const photoCount = selectedCard ? selectedCard.getAttribute('data-tier-photos') : 14;
+
+                    // 1. Hide the Shopify page overflow so the modal takes over
+                    document.body.style.overflow = 'hidden';
+
+                    // 2. Dispatch an event to wake up the React App
+                    window.dispatchEvent(new CustomEvent('open-blanket-customizer', {
+                      detail: {
+                        variantId: variantId,
+                        maxPhotos: parseInt(photoCount)
+                      }
+                    }));
                   });
                 }
               });
