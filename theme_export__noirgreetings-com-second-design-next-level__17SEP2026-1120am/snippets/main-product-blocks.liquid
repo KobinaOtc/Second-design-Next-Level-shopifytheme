@@ -338,6 +338,9 @@
               </select>
               <!-- App Mount Point -->
               <div id="lovable-blanket-root"></div>
+              <!-- Load the React App Assets -->
+              <link rel="stylesheet" href="{{ 'blanket-app.css' | asset_url }}">
+              <script src="{{ 'blanket-app.js' | asset_url }}" defer="defer"></script>
               <style>
                 .blanket-tiers-container { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
                 .blanket-tier-card { border: 1px solid #333; padding: 20px; cursor: pointer; background: #151515; color: #e5e5e5; transition: border-color 0.2s ease; text-align: left; }
@@ -383,8 +386,14 @@
                     e.preventDefault();
                     const selectedCard = document.querySelector('.blanket-tier-card.selected');
                     const variantId = masterSelect.value;
-                    const photoCount = selectedCard ? selectedCard.getAttribute('data-tier-photos') : 14;
-                    console.log(`Ready to launch customizer for Variant: ${variantId}, requiring ${photoCount} photos.`);
+                    const photoCount = selectedCard
+                      ? Number(selectedCard.getAttribute('data-tier-photos'))
+                      : 14;
+                    document.dispatchEvent(
+                      new CustomEvent('open-blanket-modal', {
+                        detail: { variantId, photoCount }
+                      })
+                    );
                   });
                 }
               });
