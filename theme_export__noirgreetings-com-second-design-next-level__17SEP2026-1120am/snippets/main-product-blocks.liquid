@@ -368,39 +368,44 @@
               Continue &rarr;
             </button>
             <script>
-              document.addEventListener('DOMContentLoaded', () => {
-                const tierCards = document.querySelectorAll('.blanket-tier-card');
-                const masterSelect = document.getElementById('BlanketMasterSelect');
-                const customizeBtn = document.getElementById('TriggerBlanketCustomizer');
-                if(tierCards.length > 0) {
-                  tierCards.forEach(card => {
-                    card.addEventListener('click', function() {
-                      tierCards.forEach(c => c.classList.remove('selected'));
-                      this.classList.add('selected');
-                      masterSelect.value = this.getAttribute('data-variant-id');
-                    });
-                  });
-                }
-                if(customizeBtn) {
-                  customizeBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const selectedCard = document.querySelector('.blanket-tier-card.selected');
-                    const variantId = masterSelect.value;
-                    const photoCount = selectedCard ? selectedCard.getAttribute('data-tier-photos') : 14;
+              if (!document.body.dataset.blanketDelegationInitialized) {
+                document.body.dataset.blanketDelegationInitialized = 'true';
+                document.body.addEventListener('click', (event) => {
+                  const target = event.target;
+                  if (!(target instanceof Element)) return;
 
-                    // 1. Hide the Shopify page overflow so the modal takes over
-                    document.body.style.overflow = 'hidden';
+                  const tierCard = target.closest('.blanket-tier-card');
+                  if (tierCard) {
+                    const tierCards = document.querySelectorAll('.blanket-tier-card');
+                    const masterSelect = document.getElementById('BlanketMasterSelect');
+                    tierCards.forEach(card => card.classList.remove('selected'));
+                    tierCard.classList.add('selected');
+                    if (masterSelect) {
+                      masterSelect.value = tierCard.getAttribute('data-variant-id') || '';
+                    }
+                    return;
+                  }
 
-                    // 2. Dispatch an event to wake up the React App
-                    window.dispatchEvent(new CustomEvent('open-blanket-customizer', {
-                      detail: {
-                        variantId: variantId,
-                        maxPhotos: parseInt(photoCount)
-                      }
-                    }));
-                  });
-                }
-              });
+                  const customizeBtn = target.closest('#TriggerBlanketCustomizer');
+                  if (!customizeBtn) return;
+
+                  event.preventDefault();
+                  const selectedCard = document.querySelector('.blanket-tier-card.selected');
+                  const masterSelect = document.getElementById('BlanketMasterSelect');
+                  const variantId = masterSelect ? masterSelect.value : '';
+                  const photoCount = selectedCard
+                    ? selectedCard.getAttribute('data-tier-photos') || '14'
+                    : '14';
+
+                  document.body.style.overflow = 'hidden';
+                  window.dispatchEvent(new CustomEvent('open-blanket-customizer', {
+                    detail: {
+                      variantId,
+                      maxPhotos: parseInt(photoCount, 10)
+                    }
+                  }));
+                });
+              }
             </script>
           {%- else -%}
             <!-- ORIGINAL THEME BUY BUTTONS -->
