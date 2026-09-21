@@ -339,7 +339,54 @@
               <!-- App Mount Point -->
               <div id="lovable-blanket-root"></div>
               <!-- Load the React App Assets -->
-              <link rel="stylesheet" href="{{ 'blanket-app.css' | asset_url }}">
+              <script>
+                (() => {
+                  const rootSelector = '#lovable-blanket-root';
+                  const stylesheetUrl = '{{ 'blanket-app.css' | asset_url }}';
+
+                  if (document.querySelector('style[data-blanket-app-scoped]')) return;
+
+                  fetch(stylesheetUrl)
+                    .then(response => {
+                      if (!response.ok) throw new Error(`Failed to load ${stylesheetUrl}`);
+                      return response.text();
+                    })
+                    .then(cssText => {
+                      const style = document.createElement('style');
+                      style.dataset.blanketAppScoped = 'true';
+                      style.textContent = cssText;
+                      document.head.appendChild(style);
+
+                      const scopeRules = rules => {
+                        Array.from(rules).forEach(rule => {
+                          if (rule.selectorText) {
+                            rule.selectorText = rule.selectorText
+                              .split(',')
+                              .map(selector => {
+                                const trimmedSelector = selector.trim();
+                                if (/^(html|body|:root)$/.test(trimmedSelector)) {
+                                  return rootSelector;
+                                }
+                                if (/^(html|body|:root)\s+/.test(trimmedSelector)) {
+                                  return trimmedSelector.replace(/^(html|body|:root)/, rootSelector);
+                                }
+                                if (trimmedSelector === '*') {
+                                  return `${rootSelector} *`;
+                                }
+                                return `${rootSelector} ${trimmedSelector}`;
+                              })
+                              .join(', ');
+                          } else if (rule.cssRules) {
+                            scopeRules(rule.cssRules);
+                          }
+                        });
+                      };
+
+                      scopeRules(style.sheet.cssRules);
+                    })
+                    .catch(error => console.error('Blanket app stylesheet error:', error));
+                })();
+              </script>
               <script src="{{ 'blanket-app.js' | asset_url }}" defer="defer"></script>
               <style>
                 .blanket-tiers-container { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
@@ -368,9 +415,9 @@
               Continue &rarr;
             </button>
             <script>
-              if (!document.body.dataset.blanketDelegationInitialized) {
-                document.body.dataset.blanketDelegationInitialized = 'true';
-                document.body.addEventListener('click', (event) => {
+              if (!document.documentElement.dataset.blanketDelegationInitialized) {
+                document.documentElement.dataset.blanketDelegationInitialized = 'true';
+                document.addEventListener('click', (event) => {
                   const target = event.target;
                   if (!(target instanceof Element)) return;
 
@@ -396,12 +443,14 @@
                   const photoCount = selectedCard
                     ? selectedCard.getAttribute('data-tier-photos') || '14'
                     : '14';
+                  const maxPhotos = parseInt(photoCount, 10);
 
                   document.body.style.overflow = 'hidden';
                   window.dispatchEvent(new CustomEvent('open-blanket-customizer', {
                     detail: {
                       variantId,
-                      maxPhotos: parseInt(photoCount, 10)
+                      maxPhotos,
+                      photoCount: maxPhotos
                     }
                   }));
                 });
