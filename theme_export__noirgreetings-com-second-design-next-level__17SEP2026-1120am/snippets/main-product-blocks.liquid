@@ -387,7 +387,13 @@
                     .catch(error => console.error('Blanket app stylesheet error:', error));
                 })();
               </script>
-              <script src="{{ 'blanket-app.js' | asset_url }}" defer="defer"></script>
+              <script
+                id="blanket-app-script"
+                src="{{ 'blanket-app.js' | asset_url }}"
+                defer="defer"
+                onload="window.__blanketAppLoaded = true"
+                onerror="console.error('Blanket app failed to load:', this.src)"
+              ></script>
               <style>
                 .blanket-tiers-container { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
                 .blanket-tier-card { border: 1px solid #333; padding: 20px; cursor: pointer; background: #151515; color: #e5e5e5; transition: border-color 0.2s ease; text-align: left; }
@@ -444,15 +450,19 @@
                     ? selectedCard.getAttribute('data-tier-photos') || '14'
                     : '14';
                   const maxPhotos = parseInt(photoCount, 10);
+                  const eventDetail = {
+                    variantId,
+                    maxPhotos,
+                    photoCount: maxPhotos
+                  };
 
                   document.body.style.overflow = 'hidden';
-                  window.dispatchEvent(new CustomEvent('open-blanket-customizer', {
-                    detail: {
-                      variantId,
-                      maxPhotos,
-                      photoCount: maxPhotos
-                    }
-                  }));
+                  window.__blanketCustomizerLastEvent = eventDetail;
+                  const openEvent = new CustomEvent('open-blanket-customizer', {
+                    detail: eventDetail
+                  });
+                  window.dispatchEvent(openEvent);
+                  document.dispatchEvent(openEvent);
                 });
               }
             </script>
