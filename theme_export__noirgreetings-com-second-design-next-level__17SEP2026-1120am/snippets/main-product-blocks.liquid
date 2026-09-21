@@ -387,13 +387,34 @@
                     .catch(error => console.error('Blanket app stylesheet error:', error));
                 })();
               </script>
-              <script
-                id="blanket-app-script"
-                src="{{ 'blanket-app.js' | asset_url }}"
-                defer="defer"
-                onload="window.__blanketAppLoaded = true"
-                onerror="console.error('Blanket app failed to load:', this.src)"
-              ></script>
+              <script>
+                (() => {
+                  const appRoot = document.getElementById('lovable-blanket-root');
+                  const appSrc = '{{ 'blanket-app.js' | asset_url }}';
+                  if (!appRoot || window.__blanketAppLoading || window.__blanketAppLoaded) return;
+
+                  window.__blanketAppLoading = true;
+                  const appScript = document.createElement('script');
+                  appScript.id = 'blanket-app-script';
+                  appScript.src = appSrc;
+                  appScript.async = true;
+                  appScript.onload = () => {
+                    window.__blanketAppLoaded = true;
+                    window.__blanketAppLoading = false;
+                    if (window.__blanketCustomizerPendingEvent) {
+                      window.dispatchEvent(new CustomEvent('open-blanket-customizer', {
+                        detail: window.__blanketCustomizerPendingEvent
+                      }));
+                      window.__blanketCustomizerPendingEvent = null;
+                    }
+                  };
+                  appScript.onerror = () => {
+                    window.__blanketAppLoading = false;
+                    console.error('Blanket app failed to load:', appSrc);
+                  };
+                  document.head.appendChild(appScript);
+                })();
+              </script>
               <style>
                 .blanket-tiers-container { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
                 .blanket-tier-card { border: 1px solid #333; padding: 20px; cursor: pointer; background: #151515; color: #e5e5e5; transition: border-color 0.2s ease; text-align: left; }
@@ -461,8 +482,11 @@
                   const openEvent = new CustomEvent('open-blanket-customizer', {
                     detail: eventDetail
                   });
+                  if (!window.__blanketAppLoaded) {
+                    window.__blanketCustomizerPendingEvent = eventDetail;
+                    return;
+                  }
                   window.dispatchEvent(openEvent);
-                  document.dispatchEvent(openEvent);
                 });
               }
             </script>
