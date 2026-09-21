@@ -329,7 +329,7 @@
                 {% endfor %}
               </div>
               <!-- Hidden Select for Shopify Cart -->
-              <select name="id" id="BlanketMasterSelect" style="display:none;">
+              <select name="id" id="BlanketMasterSelect-{{ section.id }}" style="display:none;">
                 {% for variant in product.variants %}
                   <option value="{{ variant.id }}" {% if forloop.first %}selected="selected"{% endif %}>
                     {{ variant.title }}
@@ -338,83 +338,6 @@
               </select>
               <!-- App Mount Point -->
               <div id="lovable-blanket-root"></div>
-              <!-- Load the React App Assets -->
-              <script>
-                (() => {
-                  const rootSelector = '#lovable-blanket-root';
-                  const stylesheetUrl = '{{ 'blanket-app.css' | asset_url }}';
-
-                  if (document.querySelector('style[data-blanket-app-scoped]')) return;
-
-                  fetch(stylesheetUrl)
-                    .then(response => {
-                      if (!response.ok) throw new Error(`Failed to load ${stylesheetUrl}`);
-                      return response.text();
-                    })
-                    .then(cssText => {
-                      const style = document.createElement('style');
-                      style.dataset.blanketAppScoped = 'true';
-                      style.textContent = cssText;
-                      document.head.appendChild(style);
-
-                      const scopeRules = rules => {
-                        Array.from(rules).forEach(rule => {
-                          if (rule.selectorText) {
-                            rule.selectorText = rule.selectorText
-                              .split(',')
-                              .map(selector => {
-                                const trimmedSelector = selector.trim();
-                                if (/^(html|body|:root)$/.test(trimmedSelector)) {
-                                  return rootSelector;
-                                }
-                                if (/^(html|body|:root)\s+/.test(trimmedSelector)) {
-                                  return trimmedSelector.replace(/^(html|body|:root)/, rootSelector);
-                                }
-                                if (trimmedSelector === '*') {
-                                  return `${rootSelector} *`;
-                                }
-                                return `${rootSelector} ${trimmedSelector}`;
-                              })
-                              .join(', ');
-                          } else if (rule.cssRules) {
-                            scopeRules(rule.cssRules);
-                          }
-                        });
-                      };
-
-                      scopeRules(style.sheet.cssRules);
-                    })
-                    .catch(error => console.error('Blanket app stylesheet error:', error));
-                })();
-              </script>
-              <script>
-                (() => {
-                  const appRoot = document.getElementById('lovable-blanket-root');
-                  const appSrc = '{{ 'blanket-app.js' | asset_url }}';
-                  if (!appRoot || window.__blanketAppLoading || window.__blanketAppLoaded) return;
-
-                  window.__blanketAppLoading = true;
-                  const appScript = document.createElement('script');
-                  appScript.id = 'blanket-app-script';
-                  appScript.src = appSrc;
-                  appScript.async = true;
-                  appScript.onload = () => {
-                    window.__blanketAppLoaded = true;
-                    window.__blanketAppLoading = false;
-                    if (window.__blanketCustomizerPendingEvent) {
-                      window.dispatchEvent(new CustomEvent('open-blanket-customizer', {
-                        detail: window.__blanketCustomizerPendingEvent
-                      }));
-                      window.__blanketCustomizerPendingEvent = null;
-                    }
-                  };
-                  appScript.onerror = () => {
-                    window.__blanketAppLoading = false;
-                    console.error('Blanket app failed to load:', appSrc);
-                  };
-                  document.head.appendChild(appScript);
-                })();
-              </script>
               <style>
                 .blanket-tiers-container { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
                 .blanket-tier-card { border: 1px solid #333; padding: 20px; cursor: pointer; background: #151515; color: #e5e5e5; transition: border-color 0.2s ease; text-align: left; }
@@ -423,6 +346,21 @@
                 .tier-title { margin: 0; font-size: 1.4rem; font-family: serif; color: #fff; }
                 .tier-price { color: #d4af37; font-weight: bold; font-size: 1.2rem; }
                 .tier-description { margin: 0; font-size: 0.9rem; color: #aaa; }
+                .blanket-customizer-modal[hidden] { display: none; }
+                .blanket-customizer-modal { position: fixed; inset: 0; z-index: 100000; overflow-y: auto; background: rgba(17, 17, 17, 0.96); padding: 32px 16px; color: #e5e5e5; }
+                .blanket-customizer-dialog { max-width: 960px; margin: 0 auto; position: relative; }
+                .blanket-customizer-close { position: absolute; top: -8px; right: 0; border: 0; background: transparent; color: #fff; font-size: 2rem; cursor: pointer; }
+                .blanket-customizer-dialog h2 { color: #fff; font-family: serif; }
+                .blanket-customizer-help { color: #aaa; }
+                .blanket-customizer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 24px 0; }
+                .blanket-customizer-slot { border: 1px solid #444; padding: 14px; background: #151515; display: grid; gap: 8px; }
+                .blanket-customizer-slot-number { color: #d4af37; font-weight: bold; }
+                .blanket-customizer-slot img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+                .blanket-customizer-slot input[type="text"] { width: 100%; padding: 8px; }
+                .blanket-customizer-error { color: #ff9b8f; }
+                .blanket-customizer-actions { display: flex; gap: 12px; justify-content: flex-end; }
+                .blanket-customizer-actions button { padding: 12px 18px; cursor: pointer; }
+                .blanket-customizer-submit { background: #d4af37; border: 0; color: #000; font-weight: bold; }
               </style>
             {%- else -%}
               <!-- ORIGINAL THEME VARIANT PICKER -->
@@ -438,9 +376,13 @@
           {%- endif -%}
           {%- if is_custom_blanket -%}
             <!-- CUSTOM CONTINUE BUTTON -->
-            <button type="button" id="TriggerBlanketCustomizer" class="m-button m-button--primary w-full" style="background-color: #d4af37; color: #000; font-weight: bold; width: 100%; padding: 15px;">
+            <button type="button" id="TriggerBlanketCustomizer-{{ section.id }}" class="m-button m-button--primary w-full" style="background-color: #d4af37; color: #000; font-weight: bold; width: 100%; padding: 15px;">
               Continue &rarr;
             </button>
+            {%- form 'product', product, id: product_form_id, class: product_form_class, novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              <button type="submit" name="add" id="BlanketHiddenSubmit-{{ section.id }}" hidden></button>
+            {%- endform -%}
             <script>
               if (!document.documentElement.dataset.blanketDelegationInitialized) {
                 document.documentElement.dataset.blanketDelegationInitialized = 'true';
@@ -450,8 +392,10 @@
 
                   const tierCard = target.closest('.blanket-tier-card');
                   if (tierCard) {
-                    const tierCards = document.querySelectorAll('.blanket-tier-card');
-                    const masterSelect = document.getElementById('BlanketMasterSelect');
+                    const picker = tierCard.closest('.main-product__block-variant_picker');
+                    const tierCards = picker?.querySelectorAll('.blanket-tier-card') || [];
+                    const sectionId = picker?.querySelector('select[id^="BlanketMasterSelect-"]')?.id.replace('BlanketMasterSelect-', '');
+                    const masterSelect = sectionId ? document.getElementById(`BlanketMasterSelect-${sectionId}`) : null;
                     tierCards.forEach(card => card.classList.remove('selected'));
                     tierCard.classList.add('selected');
                     if (masterSelect) {
@@ -460,33 +404,112 @@
                     return;
                   }
 
-                  const customizeBtn = target.closest('#TriggerBlanketCustomizer');
+                  const customizeBtn = target.closest('[id^="TriggerBlanketCustomizer-"]');
                   if (!customizeBtn) return;
 
                   event.preventDefault();
-                  const selectedCard = document.querySelector('.blanket-tier-card.selected');
-                  const masterSelect = document.getElementById('BlanketMasterSelect');
+                  const sectionId = customizeBtn.id.replace('TriggerBlanketCustomizer-', '');
+                  const masterSelect = document.getElementById(`BlanketMasterSelect-${sectionId}`);
+                  const picker = masterSelect?.closest('.main-product__block-variant_picker');
+                  const selectedCard = picker?.querySelector('.blanket-tier-card.selected');
                   const variantId = masterSelect ? masterSelect.value : '';
                   const photoCount = selectedCard
                     ? selectedCard.getAttribute('data-tier-photos') || '14'
                     : '14';
-                  const maxPhotos = parseInt(photoCount, 10);
-                  const eventDetail = {
-                    variantId,
-                    maxPhotos,
-                    photoCount: maxPhotos
-                  };
+                  const maxPhotos = Number.parseInt(photoCount, 10);
+                  let modal = document.getElementById(`BlanketNativeCustomizer-${sectionId}`);
 
+                  if (!modal) {
+                    modal = document.createElement('div');
+                    modal.id = `BlanketNativeCustomizer-${sectionId}`;
+                    modal.className = 'blanket-customizer-modal';
+                    modal.innerHTML = `
+                      <div class="blanket-customizer-dialog" role="dialog" aria-modal="true" aria-labelledby="BlanketCustomizerTitle">
+                        <button type="button" class="blanket-customizer-close" aria-label="Close">&times;</button>
+                        <h2 id="BlanketCustomizerTitle">Create your blanket</h2>
+                        <p class="blanket-customizer-help">Add one photograph and caption for each space in your ${maxPhotos}-photo grid.</p>
+                        <div class="blanket-customizer-grid"></div>
+                        <p class="blanket-customizer-error" role="alert" hidden></p>
+                        <div class="blanket-customizer-actions">
+                          <button type="button" class="blanket-customizer-cancel">Cancel</button>
+                          <button type="button" class="blanket-customizer-submit">Add blanket to cart</button>
+                        </div>
+                      </div>
+                    `;
+                    document.body.appendChild(modal);
+                  }
+
+                  modal.dataset.formId = `product-form-${sectionId}`;
+                  const grid = modal.querySelector('.blanket-customizer-grid');
+                  const error = modal.querySelector('.blanket-customizer-error');
+                  grid.innerHTML = '';
+                  for (let index = 0; index < maxPhotos; index += 1) {
+                    const slot = document.createElement('div');
+                    slot.className = 'blanket-customizer-slot';
+                    slot.innerHTML = `
+                      <span class="blanket-customizer-slot-number">${index + 1}</span>
+                      <input type="file" accept="image/*" data-photo-index="${index}" name="properties[Photo ${index + 1}]" required>
+                      <label>Caption ${index + 1}</label>
+                      <input type="text" maxlength="160" data-caption-index="${index}" name="properties[Caption ${index + 1}]" placeholder="Add a caption" required>
+                      <img alt="" hidden>
+                    `;
+                    grid.appendChild(slot);
+                  }
+
+                  modal.dataset.variantId = variantId;
+                  modal.dataset.maxPhotos = String(maxPhotos);
+                  error.hidden = true;
+                  modal.hidden = false;
                   document.body.style.overflow = 'hidden';
-                  window.__blanketCustomizerLastEvent = eventDetail;
-                  const openEvent = new CustomEvent('open-blanket-customizer', {
-                    detail: eventDetail
-                  });
-                  if (!window.__blanketAppLoaded) {
-                    window.__blanketCustomizerPendingEvent = eventDetail;
+                });
+              }
+
+              if (!document.documentElement.dataset.blanketCustomizerInitialized) {
+                document.documentElement.dataset.blanketCustomizerInitialized = 'true';
+                document.addEventListener('change', event => {
+                  const input = event.target;
+                  if (!(input instanceof HTMLInputElement) || input.type !== 'file' || !input.matches('[data-photo-index]')) return;
+                  const image = input.closest('.blanket-customizer-slot')?.querySelector('img');
+                  const file = input.files?.[0];
+                  if (!image || !file) return;
+                  image.src = URL.createObjectURL(file);
+                  image.hidden = false;
+                });
+                document.addEventListener('click', event => {
+                  const target = event.target;
+                  if (!(target instanceof Element)) return;
+                  const modal = target.closest('.blanket-customizer-modal');
+                  if (!modal) return;
+                  if (target.closest('.blanket-customizer-close, .blanket-customizer-cancel')) {
+                    modal.hidden = true;
+                    document.body.style.overflow = '';
                     return;
                   }
-                  window.dispatchEvent(openEvent);
+                  if (!target.closest('.blanket-customizer-submit')) return;
+
+                  event.preventDefault();
+                  const error = modal.querySelector('.blanket-customizer-error');
+                  const files = [...modal.querySelectorAll('input[type="file"][data-photo-index]')];
+                  const captions = [...modal.querySelectorAll('input[data-caption-index]')];
+                  const missing = files.some(input => !input.files?.length);
+                  const missingCaption = captions.some(input => !input.value.trim());
+                  if (missing || missingCaption) {
+                    error.textContent = missing
+                      ? 'Please add a photograph to every grid space.'
+                      : 'Please add a caption for every photograph.';
+                    error.hidden = false;
+                    return;
+                  }
+
+                  const form = document.getElementById(modal.dataset.formId);
+                  const variantInput = form?.querySelector('input[name="id"]');
+                  if (!form || !variantInput) return;
+                  variantInput.value = modal.dataset.variantId || '';
+                  form.enctype = 'multipart/form-data';
+                  modal.querySelectorAll('input[data-photo-index], input[data-caption-index]').forEach(input => {
+                    input.form || form.appendChild(input);
+                  });
+                  form.querySelector('button[type="submit"][name="add"]')?.click();
                 });
               }
             </script>
