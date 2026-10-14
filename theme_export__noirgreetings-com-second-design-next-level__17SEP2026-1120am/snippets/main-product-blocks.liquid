@@ -362,6 +362,7 @@
                 .blanket-customizer-upload-label { padding: 8px; font-size: 0.9rem; }
                 .blanket-customizer-upload input[type="file"] { position: absolute; inset: 0; width: 100%; height: 100%; min-width: 0; opacity: 0; cursor: pointer; }
                 .blanket-customizer-slot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+                .blanket-customizer-upload-error { margin: 0; color: #ff9b8f; font-size: 0.8rem; line-height: 1.35; }
                 .blanket-customizer-slot label { min-width: 0; color: #e5e5e5; font-size: 0.9rem; }
                 .blanket-customizer-slot input[type="text"] { display: block; width: 100%; min-width: 0; max-width: 100%; padding: 9px; border: 1px solid #555; border-radius: 0; background: #f5f5f5; color: #151515; font: inherit; }
                 .blanket-customizer-error { color: #ff9b8f; }
@@ -475,6 +476,7 @@
                         <img alt="Preview for photograph ${index + 1}" hidden>
                         <input type="file" accept="image/*" data-photo-index="${index}" name="properties[Photo ${index + 1}]" aria-label="Upload photograph ${index + 1}" required>
                       </div>
+                      <p class="blanket-customizer-upload-error" role="alert" hidden></p>
                       <label>Caption ${index + 1}</label>
                       <input type="text" maxlength="160" data-caption-index="${index}" name="properties[Caption ${index + 1}]" placeholder="Add a caption" required>
                     `;
@@ -491,6 +493,7 @@
 
               if (!document.documentElement.dataset.blanketCustomizerInitialized) {
                 document.documentElement.dataset.blanketCustomizerInitialized = 'true';
+                const acceptedBlanketFiles = new WeakMap();
                 document.addEventListener('change', event => {
                   const input = event.target;
                   if (!(input instanceof HTMLInputElement) || input.type !== 'file' || !input.matches('[data-photo-index]')) return;
@@ -499,6 +502,27 @@
                   const label = upload?.querySelector('.blanket-customizer-upload-label');
                   const file = input.files?.[0];
                   if (!image || !file) return;
+
+                  const error = input.closest('.blanket-customizer-slot')?.querySelector('.blanket-customizer-upload-error');
+                  const maxFileSize = 5 * 1024 * 1024;
+                  if (file.size > maxFileSize) {
+                    if (error) {
+                      error.textContent = 'This image is larger than 5 MB. Please compress it and upload it again.';
+                      error.hidden = false;
+                    }
+                    const acceptedFile = acceptedBlanketFiles.get(input);
+                    if (acceptedFile) {
+                      const restoredFiles = new DataTransfer();
+                      restoredFiles.items.add(acceptedFile);
+                      input.files = restoredFiles.files;
+                    } else {
+                      input.value = '';
+                    }
+                    return;
+                  }
+
+                  acceptedBlanketFiles.set(input, file);
+                  if (error) error.hidden = true;
                   if (image.dataset.previewUrl) URL.revokeObjectURL(image.dataset.previewUrl);
                   image.src = URL.createObjectURL(file);
                   image.dataset.previewUrl = image.src;
